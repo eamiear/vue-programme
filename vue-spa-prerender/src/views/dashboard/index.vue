@@ -11,7 +11,7 @@
         <i slot="prefix" class="el-input__icon el-icon-search"></i>
       </el-input>
     </div> -->
-    <ul>
+    <ul v-loading="loading">
       <li v-for="(item, index) in fileList" :key="index">
           <el-card>
             <p :id="item.key.replace(/\./g,'')" :title="domain + item.key">{{domain + item.key}}</p>
@@ -60,7 +60,8 @@
         isUploadFile: false,
         prefix: 'h5.cdn.',
         fileName: '',
-        keyword: ''
+        keyword: '',
+        loading: true
       }
     },
     components: {Clipboard},
@@ -79,6 +80,7 @@
         SystemAPI.list().then(response => {
           if (response.code === 0) {
             this.fileList = response.data.list.items
+            this.loading = false
           }
         })
       },

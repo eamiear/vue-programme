@@ -1,4 +1,4 @@
-# vue-spa-prerender
+# vue-spa-ssr
 
 ## Project setup
 ```
