@@ -22,8 +22,8 @@ export function createRouter () {
       // { path: '/item/:id(\\d+)', component: ItemView },
       // { path: '/user/:id', component: UserView },
       // { path: '/', redirect: '/top' }
-      { path: '/', component: () => import('../components/HelloWorld.vue')},
-      { path: '/table', component: () => import('../components/Table.vue')}
+      { path: '/', component: () => import('../components/HelloWorld.vue') },
+      { path: '/table', component: () => import('../components/Table.vue') }
     ]
   })
 }

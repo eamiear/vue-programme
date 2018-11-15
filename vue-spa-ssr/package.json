@@ -4,16 +4,18 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
     "build:client": "vue-cli-service build",
-    "build:server": "cross-env VUE-ENV=node vue-cli-service build",
+    "build:server": "cross-env VUE_ENV=server vue-cli-service build",
+    "build": "cross-env VUE_ENV=server vue-cli-service build && move dist\\vue-ssr-server-bundle.json bundle && vue-cli-service build && move bundle dist\\vue-ssr-server-bundle.json",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.9",
+    "express": "^4.16.4",
     "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",
@@ -21,9 +23,16 @@
     "@vue/cli-service": "^3.1.1",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "chokidar": "^2.0.4",
+    "cross-env": "^5.2.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
-    "vue-template-compiler": "^2.5.17"
+    "memory-fs": "^0.4.1",
+    "vue-server-renderer": "^2.5.17",
+    "vue-template-compiler": "^2.5.17",
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.1.4",
+    "webpack-node-externals": "^1.7.2"
   },
   "eslintConfig": {
     "root": true,
@@ -34,7 +43,9 @@
       "plugin:vue/essential",
       "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      "prefer-promise-reject-errors": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
